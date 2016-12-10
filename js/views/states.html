@@ -1,0 +1,11 @@
+<h1 data-bind=""text: title"></h1>
+<div 
+    id='thematicmap1'
+    data-bind="ojComponent:{
+        component: 'ojThematicMap',
+        basemap: 'bundeslaender',
+        mapProvider: mapProvider,
+        areaLayers: layers
+    }"
+    style="width:100%; height:600px;"
+/>

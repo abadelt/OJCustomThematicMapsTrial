@@ -1,0 +1,41 @@
+<h1 data-bind="text: title"></h1>
+
+<div id='gauge-container' class="oj-flex">
+
+    <div id="gauge1" class="oj-flex-item"
+       data-bind="ojComponent: {
+         component: 'ojDialGauge',
+         value: gaugeValue,
+         readOnly: false,
+         animationOnDisplay: 'auto',
+         indicator: 'needleAlta',
+         background: 'circleAlta',
+         metricLabel: {rendered: 'on',
+         style: 'font-size: 18px; font-weight: bold; font-family: Georgia, Times New Roman, serif;'}
+        }"
+        style="width:250px;height:250px">
+    </div>
+
+
+
+    <div id="gauge10"  class="oj-flex-item"
+         data-bind="ojComponent: {
+         component: 'ojStatusMeterGauge', 
+         min: 0, 
+         max: 100, 
+         value: gaugeValue, 
+         orientation: 'circular',
+         plotArea: {rendered: 'on'},
+         metricLabel: {rendered: 'on'},
+         title: {text: 'Sales'},
+         readOnly: false
+         }" 
+         style=
+         "align:center;
+         margin-top:5px;
+         margin-bottom:5px;
+         height:100px;
+         width:45%;">
+    </div>
+    
+</div>
