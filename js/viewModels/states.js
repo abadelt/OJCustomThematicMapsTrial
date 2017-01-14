@@ -17,7 +17,7 @@ define(['text!../model/bundeslaender.geo.json', 'ojs/ojcore', 'knockout', 'ojs/o
             }
         };
         var getStateColor = function (mp) {
-            if (mp == 'CDU')
+            if (mp == 'CDU' || mp == 'CSU')
                 return '#111111';
             else if (mp == 'SPD')
                 return '#FF0000';
@@ -25,6 +25,12 @@ define(['text!../model/bundeslaender.geo.json', 'ojs/ojcore', 'knockout', 'ojs/o
                 return '#EE0088';
             else if (mp == 'Green')
                 return '#00FF00';
+        };
+         var getLabelColor = function (mp) {
+            if (mp == 'CDU' || mp == 'CSU' || mp == 'SPD' || mp == 'Left')
+                return '#FFFFFF';
+            else if (mp == 'Green')
+                return '#000000';
         };
         var getStateId = function (state, stateIdMap) {
             for (var id in stateIdMap) {
@@ -39,11 +45,19 @@ define(['text!../model/bundeslaender.geo.json', 'ojs/ojcore', 'knockout', 'ojs/o
                 var id = features[i]["properties"]["ID_1"];
                 var name = features[i]["properties"]["NAME_1"];
                 var mp = features[i]["properties"]["MainGoverningParty"];
+                var label = name;
+                // the regular labels won't fit into the two smallest areas and would not be displayed at all:
+                if (label == "Hamburg") {
+                    label = "HH";
+                } else if (label == "Bremen") {
+                    label = "HB";
+                }
                 areaData.push({
                     id: id,
                     location: getStateId(name, dataContext.ids),
                     color: getStateColor(mp),
-                    label: name
+                    label: label,
+                    labelStyle: getLabelColor(mp)
                 });
             }
             return areaData;
